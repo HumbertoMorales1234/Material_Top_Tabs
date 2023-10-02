@@ -17,21 +17,30 @@ export default function App() {
   return (
     <NavigationContainer>
       <View style={styles.container}>
-        <TabNav.Navigator initialRouteName='Home' screenOptions={{
-          tabBarLabelStyle: { fontSize: 15 , paddingTop: 40},
-          //tabBarItemStyle: { width: 100 },
-          //tabBarStyle: { backgroundColor: 'powderblue' },
-        }}>
+        <TabNav.Navigator initialRouteName='Home' 
+        backBehavior='initialRoute'                           //? A que pestaña ir al ir hacia atras
+        tabBarPosition='top'                                  //? Posición de la barra de menú
+        screenOptions={{                                      //* Configurar los estilos de todas las pantallas
+          tabBarLabelStyle: { fontSize: 15 , paddingTop: 40}, //? Estilos generales para la tap Bar (El menú completo)
+          //tabBarItemStyle: { width: 100 },                  //? Estilos para los Items de la tap Bar 
+          lazy: true,                                         //? Define si todas las pantallas se cargan o no al iniciar la app
+          lazyPreloadDistance:0,                              //? Define la distancia que tienen las pantallas que se van a pre cargar
+        }}
+        tapBarBounces                                         //? Scrollear de más rebota la tabBar  
+                                                                      //! Solo para IOS
+
+        >
+
           <TabNav.Screen name='Messages' component={MessagesScreen} options={{
-            tabBarStyle:{backgroundColor: '#9C3037'},
-            tabBarInactiveTintColor: '#EC8087',
-            tabBarActiveTintColor: '#fff',
+            tabBarStyle:{backgroundColor: '#9C3037'},  //? Color del Fondo de toda la tap Bar
+            tabBarInactiveTintColor: '#EC8087',        //? Color del Texto de los Items inactivos
+            tabBarActiveTintColor: '#fff',             //? Color del Texto del Item activo
             tabBarIndicatorStyle:{
-              backgroundColor: '#f11010'
+              backgroundColor: '#f11010'               //? Color de la barra de selección 
             }
           }}/>
           <TabNav.Screen name='Home' component={HomeScreen} options={{
-            //tabBarStyle:{backgroundColor: '#000000'}
+            
           }}/>
           <TabNav.Screen name='Groups' component={GroupsScreen} options={{
             tabBarStyle:{backgroundColor: '#52454D'},
